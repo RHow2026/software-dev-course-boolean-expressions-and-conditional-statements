@@ -29,18 +29,27 @@ const readline = require('readline-sync');
 const hasTorch = true;
 const hasMap = false;
 
-console.log("You see two paths: one leads to the mountains, the other to the village.");
-const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
+console.log("You see two paths: one leads to the mountains, the other to the village."); 
+choice = readline.question("Do you go to the 'mountains' or the 'village'? ");
 
-if (choice === "mountains" && hasTorch) {
-  console.log("You safely navigate through the dark mountains.");
-} else if (choice === "mountains" && !hasTorch) {
-  console.log("It's too dark to proceed. You decide to turn back.");
-} else if (choice === "village" || hasMap) {
+if (choice === "mountains") {
+  console.log("As you start toward the mountains you notice how much darker the path becomes..."); 
+  choice = readline.question("Do you have a torch and something to light it with? "); 
+  if (choice === "yes" && hasTorch) {
+    console.log("You safely navigate the dark path and reach the mountains.");
+  } else if (choice === "no") {
+    console.log("It's too dark to proceed. You decide to turn back.");
+  }
+} else if (choice === "village") {
   console.log("You find your way to the village.");
-} else {
-  console.log("You get lost and wander aimlessly.");
+  choice = readline.question("Do you have a map to navigate the village? ");
+  if (choice === "yes" || hasMap) {
+    console.log("You use the map to find your way through the village and discover a hidden treasure!");
+  } else if (choice === "no") {
+    console.log("Without a map, you get lost in the village and have to ask for directions.");
+  }
 }
+
 
 /* 
 
